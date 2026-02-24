@@ -40,26 +40,46 @@ class ViewController: UIViewController {
 	}
 	@IBOutlet weak var resultLabel: UILabel!
 	
+	func showAlert(message: String){
+		let alert = UIAlertController(title: "Error", message: "Enter A Number", preferredStyle: .alert)
+		let okAction = UIAlertAction(title: "OK", style: .default)
+		alert.addAction(okAction)
+		present(alert, animated: true)
+	}
+	
 	@IBAction func resultButton(_ sender: Any) {
-		let op1 = Int(operand1TextField.text!)!
-		let op2 = Int(operand2TextField.text!)!
-		let op = selectOperator.title(for: .normal)
-		
-		if op == "+" {
-			let result = op1 + op2
-			resultLabel.text = "\(result)"
-		}else if op == "-" {
-			let result = op1 - op2
-			resultLabel.text = "\(result)"
-		}else if op == "*" {
-			let result = op1 * op2
-			resultLabel.text = "\(result)"
-		}else if op == "/" {
-			let result = op1 / op2
-			resultLabel.text = "\(result)"
-		}else{
-			print("Invalid Operator")
+//        let op1 = Int(operand1TextField.text!)!
+//        let op2 = Int(operand2TextField.text!)!
+//        let op = selectOperator.title(for: .normal)!
+		guard let op1 = operand1TextField.text, let a = Int(op1)else{
+				showAlert(message: "Enter a Number")
+				return
 		}
+		guard let op2 = operand2TextField.text, let b = Int(op2)else{
+			showAlert(message: "Enter a Number")
+			return
+		}
+		guard let op = selectOperator.title(for: .normal) else{
+			showAlert(message: "Enter a Number")
+			return
+		}
+		var result: Int? = nil
+		switch op {
+		case "+":
+			result = a + b
+		case "-":
+			result = a - b
+		case "*":
+			result = a * b
+		case "/":
+			result = a / b
+		default:
+			print("Please select an operator.")
+		}
+		guard let result = result else{
+			return
+		}
+		resultLabel.text = "\(result)"
 	}
 	
 	

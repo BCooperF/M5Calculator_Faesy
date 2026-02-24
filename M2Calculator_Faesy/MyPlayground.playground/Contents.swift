@@ -1,6 +1,6 @@
 import UIKit
 
-//Variables(Var)
+/*Variables(Var)
 var course = "IOS" //string
 var crn = 20819 //int
 var valid = true //boolean
@@ -71,4 +71,37 @@ if weekday == 1 {
 	print("Today is Friday")
 }else {
 	print("Today is Saturday")
+}*/
+
+//2.)
+func max2(_ a: Int, _ b: Int) -> Int{
+	return a > b ? a : b
 }
+
+//3.)
+func firstChar(of s: String) -> String{
+	if let ch = s.first{
+		return String(ch)
+	}else{
+		return "-"
+	}
+}
+let a = firstChar(of: "Hello")
+let b = firstChar(of: "")
+print (a)
+print (b)
+
+/*5.)
+func safeDivide(_ a: Int, _ b: Int) -> Int{
+	if b == 0{
+		return nil
+	}else{
+		return a/b
+	}
+}
+
+if let c = safeDivide(10, by: 2){
+	print(c)
+}else{
+	print("Cannot divide by Zero")
+}*/
