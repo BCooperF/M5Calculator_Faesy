@@ -15,6 +15,9 @@ class ViewController: UIViewController {
 	@IBAction func operatorButton(_ sender: Any) {
 		let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle:.alert)
 		
+		/*let action = UIAlertAction(title: "+(Plus)", style: .default, handler: { _ in
+			self.selectOperator.setTitle("+", for: .normal)
+		})*/
 		let plusAction = UIAlertAction(title: "+(plus)", style: .default) { _ in
 			self.selectOperator.setTitle("+", for: .normal)
 		}
@@ -40,7 +43,7 @@ class ViewController: UIViewController {
 	}
 	@IBOutlet weak var resultLabel: UILabel!
 	
-	func showAlert(message: String){
+	func showAlert(message: String, title: String? = "Alert"){
 		let alert = UIAlertController(title: "Error", message: "Enter A Number", preferredStyle: .alert)
 		let okAction = UIAlertAction(title: "OK", style: .default)
 		alert.addAction(okAction)
@@ -48,11 +51,8 @@ class ViewController: UIViewController {
 	}
 	
 	@IBAction func resultButton(_ sender: Any) {
-//        let op1 = Int(operand1TextField.text!)!
-//        let op2 = Int(operand2TextField.text!)!
-//        let op = selectOperator.title(for: .normal)!
 		guard let op1 = operand1TextField.text, let a = Int(op1)else{
-				showAlert(message: "Enter a Number")
+			showAlert(message: "Enter a Number", title: "op1 Error")
 				return
 		}
 		guard let op2 = operand2TextField.text, let b = Int(op2)else{
@@ -82,11 +82,8 @@ class ViewController: UIViewController {
 		resultLabel.text = "\(result)"
 	}
 	
-	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		// Do any additional setup after loading the view.
 	}
-
-
 }
